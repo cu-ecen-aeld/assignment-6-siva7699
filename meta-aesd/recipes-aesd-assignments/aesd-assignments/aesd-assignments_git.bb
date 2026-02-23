@@ -2,9 +2,9 @@
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-# TODO: Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
-# about how to setup ssh-agent for passwordless access
-SRC_URI = "git@github.com:cu-ecen-aeld/assignments-3-and-later-siva7699.git;protocol=https;branch=main"
+# TODO: Set this with the path to your assignments repo. Use https or ssh protocol
+# Example: use HTTPS form of the URL so it parses correctly in bitbake
+SRC_URI = "https://github.com/cu-ecen-aeld/assignments-3-and-later-siva7699.git;protocol=https;branch=main"
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
