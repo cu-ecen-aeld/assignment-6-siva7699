@@ -4,7 +4,8 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 # TODO: Set this with the path to your assignments repo. Use https or ssh protocol
 # Example: use HTTPS form of the URL so it parses correctly in bitbake
-SRC_URI = "https://github.com/cu-ecen-aeld/assignments-3-and-later-siva7699.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/cu-ecen-aeld/assignments-3-and-later-siva7699.git;protocol=https;branch=main"
+
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
@@ -18,22 +19,21 @@ S = "${WORKDIR}/git/server"
 
 # TODO: Add the aesdsocket application and any other files you need to install
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
-FILES:${PN} += "${bindir}/aesdsocket"
+FILES_${PN} += "${bindir}/aesdsocket"
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)
 TARGET_LDFLAGS += "-pthread -lrt"
-
 do_configure () {
 	:
 }
 
 do_compile () {
-	oe_runmake
+	oe_runmake CC="${CC} ${LDFLAGS}"
 }
 
 do_install () {
 	install -d ${D}${bindir}
-	install -m 0755 ${S}/aesdsocket ${D}${bindir}
+	install -m 0755 ${S}/aesdsocket ${D}${bindir}/aesdsocket
 	# TODO: Install your binaries/scripts here.
 	# Be sure to install the target directory with install -d first
 	# Yocto variables ${D} and ${S} are useful here, which you can read about at 
